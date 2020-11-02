@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="file" id="filefield" multiple accept="image/*">
+<div id="img-container">
+
+</div>
+
+
+<script>
+    const filefield = document.querySelector('#filefield');
+    const container = document.querySelector('#img-container');
+
+
+    const onReaderLoaded = function(event){
+        let tpl = `<img class="myimg" src="${event.target.result}" alt="" width="150px">`;
+        container.innerHTML += tpl;
+    }
+
+    filefield.addEventListener('change', function(event){
+
+        for(let i=0; i<filefield.files.length; i++){
+            const reader = new FileReader();
+            reader.addEventListener('load', onReaderLoaded);
+            reader.readAsDataURL(filefield.files[i]);
+        }
+    });
+
+</script>
+</body>
+</html>

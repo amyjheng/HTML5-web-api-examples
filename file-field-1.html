@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="file" id="filefield" multiple accept="image/*">
+
+<script>
+    const filefield = document.querySelector('#filefield');
+
+    filefield.addEventListener('change', function(event){
+        console.log(filefield.files);
+    });
+
+</script>
+</body>
+</html>

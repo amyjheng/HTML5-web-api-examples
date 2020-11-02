@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Drag and drop</title>
+	<style>
+		#rect {
+			position: relative;
+			width: 800px;
+			height: 600px;
+			background-color: #b0e9ff;
+		}
+		.ball {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: #ff2c72;
+			border-radius: 50%;
+			left: 100px;
+			top: 100px;
+		}
+		.rect2 {
+			position: absolute;
+			width: 240px;
+			height: 240px;
+			background-color: #ff943b;
+			left: 420px;
+			top: 150px;
+		}
+	</style>
+</head>
+<body>
+<div id="rect">
+	<div class="rect2"></div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+	const rect2 = $('.rect2');
+
+
+	rect2.on('dragenter', function(event){
+		rect2.css('background-color', 'red');
+	});  // 拖入
+
+	rect2.on('dragleave', function(event){
+		rect2.css('background-color', '#ff943b');
+	});  // 拖出
+
+	// 正在上面拖拉
+	rect2.on('dragover', function(event){
+		// 一定要在 dragover 呼叫 preventDefault(), drop 事件才會發生
+		event.preventDefault();
+	});
+	rect2.on('drop', function(event){
+		event.preventDefault(); // 不要讓瀏覽器去開啟檔案
+		// console.log(event.originalEvent.dataTransfer);
+		console.log(event.originalEvent.dataTransfer.files); // 直接觀察
+	});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px dotted green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="myc" width="640" height="480"></canvas>
+    <button onclick="doSave()">save</button>
+
+    <script>
+        const myc = document.querySelector('#myc');
+        const ctx = myc.getContext('2d');
+        const data = [];
+
+        function fillCircle(ctx, cx, cy, r) {
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.arc(cx, cy, r, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        myc.addEventListener('click', function (event) {
+            const c = Math.floor(Math.random() * 360);
+            ctx.fillStyle = `hsl(${c},100%,50%)`;
+            const r = 3 + Math.floor(Math.random() * 20);
+            fillCircle(ctx, event.offsetX, event.offsetY, r);
+            data.push({
+                c,
+                r,
+                x: event.offsetX,
+                y: event.offsetY,
+            });
+        });
+
+        function doSave() {
+            localStorage.setItem('drawDots', JSON.stringify(data));
+            alert('saved');
+        }
+
+
+
+    </script>
+</body>
+
+</html>

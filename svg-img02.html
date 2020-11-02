@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .star {
+            fill: #00B7FF;
+        }
+    </style>
+</head>
+<body>
+
+<div style="width: 200px">
+    <svg width="100%" height="100%" version="1.1" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+        <g stroke-width="2">
+            <path class="star" d="m75.37 85.794-21.301-9.8736-20.209 11.949 2.8081-23.309-17.61-15.528 23.036-4.5322 9.326-21.546 11.429 20.508 23.373 2.2115-15.973 17.207z" fill-rule="evenodd" stroke="yellow"/>
+        </g>
+    </svg>
+</div>
+
+<script>
+    const star = document.querySelector('.star');
+
+    star.addEventListener('mouseover', function(event){
+        star.style.fill = 'red';
+    });
+    star.addEventListener('mouseout', function(event){
+        star.style.fill = '#00B7FF';
+    });
+
+</script>
+</body>
+</html>

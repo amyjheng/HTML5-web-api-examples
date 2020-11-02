@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px dotted green;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="myc" width="640" height="480"></canvas>
+
+<script>
+
+    // https 可能會有安全上的問題
+    CanvasRenderingContext2D.prototype.fillCircle = function(cx, cy, r, color='red'){
+        this.fillStyle = color;
+        this.beginPath();
+        this.moveTo(cx, cy);
+        this.arc(cx, cy, r, 0, Math.PI*2);
+        this.fill();
+    };
+
+
+    const myc = document.querySelector('#myc');
+    const ctx = myc.getContext('2d');
+
+    ctx.beginPath();
+    ctx.moveTo(50, 50);
+    ctx.lineTo(200, 300);
+    ctx.lineTo(400, 50);
+    ctx.strokeStyle = 'orange';
+    ctx.lineWidth = 20;
+    ctx.stroke();
+
+    ctx.fillStyle = 'red';
+    ctx.beginPath();
+    ctx.moveTo(320, 240);
+    ctx.arc(320, 240, 50, 0, Math.PI*2);
+    ctx.fill();
+
+
+    ctx.fillCircle(320, 240, 40, 'blue');
+
+    function fillCircle(ctx, cx, cy, r, color='red'){
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, r, 0, Math.PI*2);
+        ctx.fill();
+    }
+    fillCircle(ctx, 320, 300, 60, 'lightblue');
+</script>
+</body>
+</html>

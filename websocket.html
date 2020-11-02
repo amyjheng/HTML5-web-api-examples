@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="doConnect">Connect</button>
+<button id="doDisconnect">Disconnect</button>
+
+<br>
+<input type="text" id="myinp">
+<button id="doSend">Send</button>
+<div id="info"></div>
+
+
+<script>
+
+    let ws;
+
+    const info = document.querySelector('#info');
+    const myinp = document.querySelector('#myinp');
+    const myOpen = (event)=>{
+        info.innerHTML += '--- 已連線 ---<br>';
+    };
+    const myMessage = (event)=>{
+        info.innerHTML += `收到: ${event.data}<br>`;
+    };
+    const myClose = (event)=>{
+        info.innerHTML += '=== 已斷線 ===<br>';
+    };
+
+    document.addEventListener('click', function(event){
+        switch(event.target.id){
+            case 'doConnect':
+                if(ws && ws.readyState===WebSocket.OPEN){
+                    return;
+                }
+                ws = new WebSocket("ws://localhost:3030");
+                ws.addEventListener('open', myOpen);
+                ws.addEventListener('message', myMessage);
+                ws.addEventListener('close', myClose);
+                break;
+            case 'doDisconnect':
+                if(ws && ws.close) ws.close();
+                break;
+            case 'doSend':
+                if(ws && ws.readyState===WebSocket.OPEN){
+                    info.innerHTML += `發送: ${myinp.value}<br>`;
+                    ws.send(myinp.value);
+                }
+                break;
+        }
+    })
+
+
+
+
+
+</script>
+
+</body>
+</html>

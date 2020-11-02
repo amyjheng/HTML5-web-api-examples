@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="file" id="filefield" multiple accept="image/*">
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    const ff1 = document.querySelector('#filefield');
+    const ff2 = $('#filefield');
+
+    console.log(ff1===ff2);
+    console.log(ff1===ff2[0]);
+
+</script>
+</body>
+</html>
